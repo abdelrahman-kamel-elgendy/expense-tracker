@@ -177,9 +177,8 @@ expense-tracker/
 
 
 ## 🤝 Support
-**Documentation**: See [GUIDE.md](GUIDE.md) for detailed usage instructions
-**Issues**: GitHub Issues
-**Discussions**: GitHub Discussions
+- **Documentation**: See [GUIDE.md](GUIDE.md) for detailed usage instructions
+- **Issues**: [GitHub Issues](https://github.com/abdelrahman-kamel-elgendy/expense-tracker/issues)
 
 
 <div align="center"> <sub>Built with ❤️ by Abdelrahman Kamel</sub> <br> <sub>⭐ Star us on GitHub — it motivates us a lot!</sub> </div>
