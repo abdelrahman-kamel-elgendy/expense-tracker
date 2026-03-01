@@ -50,9 +50,9 @@ node expense-tracker.js <command>
 | `add`       | Add a new expense (`--description`, `--amount`)         | implemented      |
 | `list`      | List all expenses                                       | implemented      |
 | `delete`    | Remove expense by `--id`                                | implemented      |
-| `update`    | Update an expense (`--id`, `--description`, `--amount`) | pending          |
-| `summary`   | Show totals; optional `--month <1‑12>` filter           | pending          |
-| `export`    | Export expenses to CSV                                  | pending          |
+| `update`    | Update an expense (`--id`, `--description`, `--amount`) | implemented      |
+| `summary`   | Show totals; optional `--month <1‑12>` filter           | implemented      |
+| `export`    | Export expenses to CSV                                  | implemented      |
 
 Run `expense-tracker <command> --help` for command‑specific options.
 

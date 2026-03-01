@@ -4,11 +4,5 @@
     "date": "2026-03-01",
     "description": "Lunch",
     "amount": 20
-  },
-  {
-    "id": 2,
-    "date": "2026-03-01",
-    "description": "Gas",
-    "amount": 50
   }
 ]

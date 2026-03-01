@@ -26,7 +26,7 @@ program
         const amount = parseFloat(options.amount);
 
         if (amount <= 0 || isNaN(amount)) {
-            console.log("Amount must be a positive number.");
+            console.error("Amount must be a positive number.");
             process.exit(1);
         }
 
@@ -53,7 +53,7 @@ program
         const expenses = readExpenses();
 
         if (expenses.length === 0) {
-            console.error("No expenses found.");
+            console.log("No expenses found!");
             process.exit(1);
         }
 
@@ -107,23 +107,76 @@ program
     .requiredOption("--id <id>", "Expense ID")
     .option("--description <desc>", "New description")
     .option("--amount <amount>", "New amount")
-    .action(options => {
-        throw new Error("update command not implemented yet.");
+    .action((options) => {
+        const expenses = readExpenses();
+        const id = parseInt(options.id);
+
+        const expense = expenses.find(e => e.id === id);
+        if (!expense) {
+            console.log("Expense not found.");
+            return;
+        }
+
+        if (options.description) {
+            expense.description = options.description;
+        }
+
+        if (options.amount) {
+            const amount = parseFloat(options.amount);
+            if (amount <= 0 || isNaN(amount)) {
+                console.log("Amount must be positive.");
+                return;
+            }
+            expense.amount = amount;
+        }
+
+        saveExpenses(expenses);
+        console.log("Expense updated successfully.");
     });
 
 // SUMMARY
 program
     .command("summary")
     .option("--month <month>", "Month number (1-12)")
-    .action(options => {
-        throw new Error("summary command not implemented yet.");
+    .action((options) => {
+        const expenses = readExpenses();
+        let filtered = expenses;
+
+        if (options.month) {
+            const month = parseInt(options.month);
+            filtered = expenses.filter(e => {
+                const expenseMonth = new Date(e.date).getMonth() + 1;
+                return expenseMonth === month;
+            });
+
+            const total = filtered.reduce((sum, e) => sum + e.amount, 0);
+            console.log(`Total expenses for month ${month}: $${total}`);
+            return;
+        }
+
+        const total = expenses.reduce((sum, e) => sum + e.amount, 0);
+        console.log(`Total expenses: $${total}`);
     });
 
-// EXPORT CSV 
+// EXPORT CSV (Optional Feature)
 program
     .command("export")
     .action(() => {
-        throw new Error("export command not implemented yet.");
+        const expenses = readExpenses();
+
+        if (expenses.length === 0) {
+            console.log("No expenses to export!");
+            return;
+        }
+
+        const csvHeader = "ID,Date,Description,Amount\n";
+        const csvRows = expenses
+            .map(e => `${e.id},${e.date},${e.description},${e.amount}`)
+            .join("\n");
+
+        fs.writeFileSync("expenses.csv", csvHeader + csvRows);
+
+        console.log("Expenses exported to expenses.csv");
     });
 
 program.parse(process.argv);
