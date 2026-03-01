@@ -177,7 +177,7 @@ expense-tracker/
 
 
 ## 🤝 Support
-**Documentation**: See GUIDE.md for detailed usage instructions
+**Documentation**: See [GUIDE.md](GUIDE.md) for detailed usage instructions
 **Issues**: GitHub Issues
 **Discussions**: GitHub Discussions
 
