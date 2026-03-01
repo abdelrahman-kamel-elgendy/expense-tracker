@@ -1,13 +1,4 @@
 # 📖 Expense Tracker - Complete User Guide
-
-## Table of Contents
-1. [Getting Started](##getting-started)
-2. [Command Reference](##command-reference)
-3. [Advanced Usage](##advanced-usage)
-4. [Tips and Tricks](##tips-and-tricks)
-5. [Troubleshooting](##troubleshooting)
-6. [FAQ](##faq)
-
 ---
 
 ## 🚀 Getting Started
