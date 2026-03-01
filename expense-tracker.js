@@ -27,7 +27,7 @@ program
 
         if (amount <= 0 || isNaN(amount)) {
             console.log("Amount must be a positive number.");
-            return;
+            process.exit(1);
         }
 
         const newExpense = {
@@ -40,7 +40,10 @@ program
         expenses.push(newExpense);
         saveExpenses(expenses);
 
-        console.log(`Expense added successfully (ID: ${newExpense.id})`);
+        console.log("Expense added successfully:");
+        console.log(`ID: ${newExpense.id}`);
+        console.log(`Description: ${newExpense.description}`);
+        console.log(`Amount: $${newExpense.amount}`);
     });
 
 // LIST
@@ -50,8 +53,8 @@ program
         const expenses = readExpenses();
 
         if (expenses.length === 0) {
-            console.log("No expenses found.");
-            return;
+            console.error("No expenses found.");
+            process.exit(1);
         }
 
         console.table(
@@ -69,7 +72,33 @@ program
     .command("delete")
     .requiredOption("--id <id>", "Expense ID")
     .action(options => {
-        throw new Error("update command not implemented yet.");
+        const id = Number(options.id);
+
+        if (!Number.isInteger(id) || id <= 0) {
+            console.error("Invalid ID. ID must be a positive integer.");
+            process.exit(1);
+        }
+
+        const expenses = readExpenses();
+        if (expenses.length === 0) {
+            console.error("No expenses found.");
+            process.exit(1);
+        }
+
+        const expenseIndex = expenses.findIndex(e => e.id === id);
+
+        if (expenseIndex === -1) {
+            console.error(`Expense with ID ${id} not found.`);
+            process.exit(1);
+        }
+        const deletedExpense = expenses.splice(expenseIndex, 1)[0];
+
+        saveExpenses(expenses);
+
+        console.log("Expense deleted successfully:");
+        console.log(`ID: ${deletedExpense.id}`);
+        console.log(`Description: ${deletedExpense.description}`);
+        console.log(`Amount: $${deletedExpense.amount}`);
     });
 
 // UPDATE

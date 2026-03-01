@@ -45,14 +45,14 @@ node expense-tracker.js <command>
 
 ## CLI commands
 
-| Command     | Description                                             | Status          |
-|-------------|---------------------------------------------------------|-----------------|
-| `add`       | Add a new expense (`--description`, `--amount`)         | ✅ implemented  |
-| `list`      | List all expenses                                       | ✅ implemented  |
-| `delete`    | Remove expense by `--id`                                | ⏳ pending      |
-| `update`    | Update an expense (`--id`, `--description`, `--amount`) | ⏳ pending      |
-| `summary`   | Show totals; optional `--month <1‑12>` filter           | ⏳ pending      |
-| `export`    | Export expenses to CSV                                  | ⏳ pending      |
+| Command     | Description                                             | Status           |
+|-------------|---------------------------------------------------------|------------------|
+| `add`       | Add a new expense (`--description`, `--amount`)         | implemented      |
+| `list`      | List all expenses                                       | implemented      |
+| `delete`    | Remove expense by `--id`                                | implemented      |
+| `update`    | Update an expense (`--id`, `--description`, `--amount`) | pending          |
+| `summary`   | Show totals; optional `--month <1‑12>` filter           | pending          |
+| `export`    | Export expenses to CSV                                  | pending          |
 
 Run `expense-tracker <command> --help` for command‑specific options.
 
