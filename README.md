@@ -9,6 +9,7 @@ Project home: https://roadmap.sh/projects/expense-tracker
 ## Current status & statistics
 
 - **Version:** 1.0.0
+- **Implementation progress:** 2/6 commands complete (add, list)
 - **Files in repository**
   - `expense-tracker.js` (main CLI implementation)
   - `expenses.json` (data store)
@@ -16,9 +17,11 @@ Project home: https://roadmap.sh/projects/expense-tracker
   - `README.md` (this document)
 - **Dependencies:**
   - [commander](https://www.npmjs.com/package/commander) ^14.0.3
+  - [fs](https://nodejs.org/api/fs.html) (built-in)
+  - [path](https://nodejs.org/api/path.html) (built-in)
 - **Entry point (bin):** `expense-tracker` → `expense-tracker.js`
 
-> ✅ The `add` command is fully functional. Other commands are still being developed.
+> ℹ️ **Add** and **list** commands are fully functional. Delete, update, summary, and export commands are pending implementation.
 
 ---
 
@@ -40,42 +43,33 @@ node expense-tracker.js <command>
 
 ---
 
-## Usage examples
-
-Once installed, you can start tracking expenses:
-
-```bash
-# Add an expense
-expense-tracker add --description "Gas" --amount 50
-
-# Add another expense
-expense-tracker add --description "Groceries" --amount 75.50
-```
-
----
-
 ## CLI commands
 
-| Command     | Description                                             | Status         |
-|-------------|---------------------------------------------------------|----------------|
-| `add`       | Add a new expense (`--description`, `--amount`)         | ✅ Implemented |
-| `list`      | List all expenses                                       | 🚧 In progress |
-| `delete`    | Remove expense by `--id`                                | ❌ Not started |
-| `update`    | Update an expense (`--id`, `--description`, `--amount`) | ❌ Not started |
-| `summary`   | Show totals; optional `--month <1‑12>` filter           | ❌ Not started |
-| `export`    | Export expenses to CSV                                  | ❌ Not started |
+| Command     | Description                                             | Status          |
+|-------------|---------------------------------------------------------|-----------------|
+| `add`       | Add a new expense (`--description`, `--amount`)         | ✅ implemented  |
+| `list`      | List all expenses                                       | ✅ implemented  |
+| `delete`    | Remove expense by `--id`                                | ⏳ pending      |
+| `update`    | Update an expense (`--id`, `--description`, `--amount`) | ⏳ pending      |
+| `summary`   | Show totals; optional `--month <1‑12>` filter           | ⏳ pending      |
+| `export`    | Export expenses to CSV                                  | ⏳ pending      |
 
 Run `expense-tracker <command> --help` for command‑specific options.
+
+### Implemented features
+
+- **add**: Creates a new expense with description and amount; validates positive amounts; auto-increments ID; saves to JSON file.
+- **list**: Displays all expenses in a formatted table with ID, date, description, and amount.
 
 ---
 
 ## Data storage
 
-Expenses are kept in a JSON file (`expenses.json`) at the project root. Each expense includes:
-- **id**: Auto-generated unique identifier
-- **date**: Date when the expense was recorded (YYYY-MM-DD format)
-- **description**: Name/description of the expense
-- **amount**: Cost amount (must be a positive number)
+Expenses are persisted in a JSON file (`expenses.json`) at the project root. Each expense record includes:
+- `id`: auto-incremented unique identifier
+- `date`: ISO 8601 date string (YYYY-MM-DD)
+- `description`: expense description
+- `amount`: numeric cost value
 
 The format is intentionally simple so it can be replaced with a database or other back end later.
 
@@ -97,15 +91,12 @@ ISC (see `package.json`).
 
 ## Roadmap & future work
 
-Check the project URL above for roadmap items and feature ideas. Planned enhancements and next steps include:
+Check the project URL above for roadmap items and feature ideas. Planned enhancements include:
 
-1. ✅ Implement `add` command (DONE)
-2. Implement remaining CRUD commands (`list`, `update`, `delete`)
-3. Implement `summary` command with optional month filtering
-4. Implement `export` command for CSV output
-5. Add comprehensive tests and CI/CD pipeline
-6. Improve storage layer (SQLite, cloud database, etc.)
-7. Add configuration options and localization support
+1. Implement command logic (CRUD operations, summaries).
+2. Add tests and CI.
+3. Improve storage layer (switch to SQLite/Cloud).
+4. Add configuration and localization options.
 
 ---
 

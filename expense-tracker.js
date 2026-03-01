@@ -47,7 +47,21 @@ program
 program
     .command("list")
     .action(() => {
-        throw new Error("list command not implemented yet.");
+        const expenses = readExpenses();
+
+        if (expenses.length === 0) {
+            console.log("No expenses found.");
+            return;
+        }
+
+        console.table(
+            expenses.map(e => ({
+                ID: e.id,
+                Date: e.date,
+                Description: e.description,
+                Amount: `$${e.amount}`
+            }))
+        );
     });
 
 // DELETE
