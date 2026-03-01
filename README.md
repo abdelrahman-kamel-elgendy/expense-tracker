@@ -1,18 +1,30 @@
 # Expense Tracker
 
-This project tracks personal expenses.
+A simple Node.js command‑line application for tracking personal expenses.
 
-Project URL: https://roadmap.sh/projects/expense-tracker
+Project home: https://roadmap.sh/projects/expense-tracker
 
-## What’s changed (recent updates)
+---
 
-- Version: 1.0.0
-- Added a CLI entrypoint: `expense-tracker` (see `bin` in `package.json`)
-- Uses `commander` for command-line parsing
+## Current status & statistics
+
+- **Version:** 1.0.0
+- **Files in repository**
+  - `expense-tracker.js` (main CLI implementation)
+  - `expenses.json` (data store)
+  - `package.json` (project configuration)
+  - `README.md` (this document)
+- **Dependencies:**
+  - [commander](https://www.npmjs.com/package/commander) ^14.0.3
+- **Entry point (bin):** `expense-tracker` → `expense-tracker.js`
+
+> ⚠️ Most commands currently throw a “not implemented yet” error; they serve as a skeleton for future work.
+
+---
 
 ## Installation
 
-Install globally to use the `expense-tracker` command:
+To install the tool globally:
 
 ```bash
 npm install -g .
@@ -20,32 +32,64 @@ npm install -g .
 npm link
 ```
 
-Or run directly with Node:
+Alternatively you can invoke it directly with Node:
 
 ```bash
 node expense-tracker.js <command>
 ```
 
-## Usage
+---
 
-After global install you can run the CLI anywhere:
+## CLI commands
 
-```bash
-expense-tracker summary
-```
+| Command     | Description                                             | Notes           |
+|-------------|---------------------------------------------------------|-----------------|
+| `add`       | Add a new expense (`--description`, `--amount`)         | not implemented |
+| `list`      | List all expenses                                       | not implemented |
+| `delete`    | Remove expense by `--id`                                | not implemented |
+| `update`    | Update an expense (`--id`, `--description`, `--amount`) | not implemented |
+| `summary`   | Show totals; optional `--month <1‑12>` filter           | not implemented |
+| `export`    | Export expenses to CSV                                  | not implemented |
 
-This project exposes the `expense-tracker` executable (see `bin` in `package.json`). Commands and options are implemented with `commander`.
+Run `expense-tracker <command> --help` for command‑specific options.
+
+---
 
 ## Scripts
 
-- `npm test` — placeholder test script (see `package.json`)
+- `npm test` — placeholder; currently prints an error and exits with code 1.
 
-## Repository & Support
+---
 
-- Repository: https://github.com/abdelrahman-kamel-elgendy/expense-tracker
-- Issues: https://github.com/abdelrahman-kamel-elgendy/expense-tracker/issues
+## Data storage
+
+Expenses are kept in a JSON file (`expenses.json`) at the project root. The format is intentionally simple so it can be replaced with a database or other back end later.
+
+---
+
+## Contribution & support
+
+- **Repository:** https://github.com/abdelrahman-kamel-elgendy/expense-tracker
+- **Issue tracker:** https://github.com/abdelrahman-kamel-elgendy/expense-tracker/issues
+
+Feel free to open a pull request or issue with ideas, bug reports, or contributions.
+
+---
+
+## License
+
+ISC (see `package.json`).
 
 
-## Summary
+## Roadmap & future work
 
-For full roadmap and feature ideas see the project URL above.
+Check the project URL above for roadmap items and feature ideas. Planned enhancements include:
+
+1. Implement command logic (CRUD operations, summaries).
+2. Add tests and CI.
+3. Improve storage layer (switch to SQLite/Cloud).
+4. Add configuration and localization options.
+
+---
+
+Happy tracking! 🎯
