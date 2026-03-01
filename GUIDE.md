@@ -1,12 +1,12 @@
 # 📖 Expense Tracker - Complete User Guide
 
 ## Table of Contents
-1. [Getting Started](#getting-started)
-2. [Command Reference](#command-reference)
-3. [Advanced Usage](#advanced-usage)
-4. [Tips and Tricks](#tips-and-tricks)
-5. [Troubleshooting](#troubleshooting)
-6. [FAQ](#faq)
+1. [Getting Started](##getting-started)
+2. [Command Reference](##command-reference)
+3. [Advanced Usage](##advanced-usage)
+4. [Tips and Tricks](##tips-and-tricks)
+5. [Troubleshooting](##troubleshooting)
+6. [FAQ](##faq)
 
 ---
 
@@ -426,6 +426,7 @@ chmod 755 expense-tracker.js
 ```
 
 ## ❓ FAQ
+
 Q: Where is my data stored?
 A: All data is stored in expenses.json in the same directory as the application.
 
