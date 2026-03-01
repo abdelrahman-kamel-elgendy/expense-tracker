@@ -1,5 +1,4 @@
 # 📖 Expense Tracker - Complete User Guide
----
 
 ## 🚀 Getting Started
 
