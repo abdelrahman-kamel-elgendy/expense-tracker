@@ -1,0 +1,28 @@
+{
+  "name": "expense-tracker",
+  "version": "1.0.0",
+  "description": "This project tracks personal expenses.",
+  "main": "expense-tracker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abdelrahman-kamel-elgendy/expense-tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/abdelrahman-kamel-elgendy/expense-tracker/issues"
+  },
+  "homepage": "https://github.com/abdelrahman-kamel-elgendy/expense-tracker#readme",
+  "dependencies": {
+    "commander": "^14.0.3"
+  },
+  "devDependencies": {},
+  "bin": {
+    "expense-tracker": "./expense-tracker.js"
+  }
+}
