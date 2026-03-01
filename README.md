@@ -18,7 +18,7 @@ Project home: https://roadmap.sh/projects/expense-tracker
   - [commander](https://www.npmjs.com/package/commander) ^14.0.3
 - **Entry point (bin):** `expense-tracker` → `expense-tracker.js`
 
-> ⚠️ Most commands currently throw a “not implemented yet” error; they serve as a skeleton for future work.
+> ✅ The `add` command is fully functional. Other commands are still being developed.
 
 ---
 
@@ -40,16 +40,30 @@ node expense-tracker.js <command>
 
 ---
 
+## Usage examples
+
+Once installed, you can start tracking expenses:
+
+```bash
+# Add an expense
+expense-tracker add --description "Gas" --amount 50
+
+# Add another expense
+expense-tracker add --description "Groceries" --amount 75.50
+```
+
+---
+
 ## CLI commands
 
-| Command     | Description                                             | Notes           |
-|-------------|---------------------------------------------------------|-----------------|
-| `add`       | Add a new expense (`--description`, `--amount`)         | not implemented |
-| `list`      | List all expenses                                       | not implemented |
-| `delete`    | Remove expense by `--id`                                | not implemented |
-| `update`    | Update an expense (`--id`, `--description`, `--amount`) | not implemented |
-| `summary`   | Show totals; optional `--month <1‑12>` filter           | not implemented |
-| `export`    | Export expenses to CSV                                  | not implemented |
+| Command     | Description                                             | Status         |
+|-------------|---------------------------------------------------------|----------------|
+| `add`       | Add a new expense (`--description`, `--amount`)         | ✅ Implemented |
+| `list`      | List all expenses                                       | 🚧 In progress |
+| `delete`    | Remove expense by `--id`                                | ❌ Not started |
+| `update`    | Update an expense (`--id`, `--description`, `--amount`) | ❌ Not started |
+| `summary`   | Show totals; optional `--month <1‑12>` filter           | ❌ Not started |
+| `export`    | Export expenses to CSV                                  | ❌ Not started |
 
 Run `expense-tracker <command> --help` for command‑specific options.
 
@@ -57,7 +71,13 @@ Run `expense-tracker <command> --help` for command‑specific options.
 
 ## Data storage
 
-Expenses are kept in a JSON file (`expenses.json`) at the project root. The format is intentionally simple so it can be replaced with a database or other back end later.
+Expenses are kept in a JSON file (`expenses.json`) at the project root. Each expense includes:
+- **id**: Auto-generated unique identifier
+- **date**: Date when the expense was recorded (YYYY-MM-DD format)
+- **description**: Name/description of the expense
+- **amount**: Cost amount (must be a positive number)
+
+The format is intentionally simple so it can be replaced with a database or other back end later.
 
 ---
 
@@ -77,12 +97,15 @@ ISC (see `package.json`).
 
 ## Roadmap & future work
 
-Check the project URL above for roadmap items and feature ideas. Planned enhancements include:
+Check the project URL above for roadmap items and feature ideas. Planned enhancements and next steps include:
 
-1. Implement command logic (CRUD operations, summaries).
-2. Add tests and CI.
-3. Improve storage layer (switch to SQLite/Cloud).
-4. Add configuration and localization options.
+1. ✅ Implement `add` command (DONE)
+2. Implement remaining CRUD commands (`list`, `update`, `delete`)
+3. Implement `summary` command with optional month filtering
+4. Implement `export` command for CSV output
+5. Add comprehensive tests and CI/CD pipeline
+6. Improve storage layer (SQLite, cloud database, etc.)
+7. Add configuration options and localization support
 
 ---
 
