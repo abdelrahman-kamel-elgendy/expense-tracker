@@ -1,103 +1,185 @@
-# Expense Tracker
+# 💰 Expense Tracker CLI
 
-A simple Node.js command‑line application for tracking personal expenses.
+A powerful, feature-rich command-line application for tracking personal expenses with beautiful formatting, advanced filtering, and comprehensive reporting.
 
-Project home: https://roadmap.sh/projects/expense-tracker
+[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/abdelrahman-kamel-elgendy/expense-tracker)
+[![Node.js](https://img.shields.io/badge/node-%3E%3D14.0.0-brightgreen.svg)](https://nodejs.org/)
+[![License](https://img.shields.io/badge/license-ISC-green.svg)](https://opensource.org/licenses/ISC)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/abdelrahman-kamel-elgendy/expense-tracker/pulls)
 
----
-
-## Current status & statistics
-
-- **Version:** 1.0.0
-- **Implementation progress:** 2/6 commands complete (add, list)
-- **Files in repository**
-  - `expense-tracker.js` (main CLI implementation)
-  - `expenses.json` (data store)
-  - `package.json` (project configuration)
-  - `README.md` (this document)
-- **Dependencies:**
-  - [commander](https://www.npmjs.com/package/commander) ^14.0.3
-  - [fs](https://nodejs.org/api/fs.html) (built-in)
-  - [path](https://nodejs.org/api/path.html) (built-in)
-- **Entry point (bin):** `expense-tracker` → `expense-tracker.js`
-
-> ℹ️ **Add** and **list** commands are fully functional. Delete, update, summary, and export commands are pending implementation.
+> 🎯 Project based on [roadmap.sh Expense Tracker Challenge](https://roadmap.sh/projects/expense-tracker)
 
 ---
 
-## Installation
 
-To install the tool globally:
+## ✨ Features
+
+- **Complete CRUD Operations** - Add, list, update, and delete expenses
+- **Smart Filtering** - Filter by category, month, year, amount range, and date ranges
+- **Advanced Search** - Search expenses by keywords, categories, and custom criteria
+- **Budget Management** - Set monthly budgets and track spending against limits
+- **Comprehensive Statistics** - Detailed analytics with monthly and category breakdowns
+- **Multiple Export Formats** - Export data to CSV or JSON
+- **Beautiful Console Output** - Colored formatting and organized tables
+- **Data Persistence** - All data stored in JSON format for easy backup and portability
+
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js (v14 or higher)
+- npm (v6 or higher)
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/abdelrahman-kamel-elgendy/expense-tracker.git
+
+# Navigate to project directory
+cd expense-tracker
+
+# Install dependencies
+npm install
+
+# Install globally (optional)
 npm install -g .
 # or for development
 npm link
 ```
 
-Alternatively you can invoke it directly with Node:
-
-```bash
-node expense-tracker.js <command>
-```
-
 ---
+
 
 ## CLI commands
 
-| Command     | Description                                             | Status           |
-|-------------|---------------------------------------------------------|------------------|
-| `add`       | Add a new expense (`--description`, `--amount`)         | implemented      |
-| `list`      | List all expenses                                       | implemented      |
-| `delete`    | Remove expense by `--id`                                | implemented      |
-| `update`    | Update an expense (`--id`, `--description`, `--amount`) | implemented      |
-| `summary`   | Show totals; optional `--month <1‑12>` filter           | implemented      |
-| `export`    | Export expenses to CSV                                  | implemented      |
+| Command     | Description                 |Options                                                                    |
+|-------------|-----------------------------|---------------------------------------------------------------------------|
+|add          |	Add a new expense           |--description, --amount, --category, --date                                |
+|list         |	List all expenses           |--category, --month, --sort                                                |
+|update       |	Update an expense           |--id, --description, --amount, --category, --date                          |
+|delete       |	Delete an expense           |--id, --force                                                              |
+|summary      |	Show expense summary        |--month, --category, --year, --detailed                                    |
+|search       |	Search expenses             |--keyword, --category, --min-amount, --max-amount, --start-date, --end-date|
+|budget       |	Set and track monthly budget|--amount, --month                                                          |
+|stats        |	Show detailed statistics    |--year                                                                     |
+|export       |	Export expenses             |--format, --output                                                         |
 
 Run `expense-tracker <command> --help` for command‑specific options.
 
-### Implemented features
-
-- **add**: Creates a new expense with description and amount; validates positive amounts; auto-increments ID; saves to JSON file.
-- **list**: Displays all expenses in a formatted table with ID, date, description, and amount.
-
----
-
-## Data storage
-
-Expenses are persisted in a JSON file (`expenses.json`) at the project root. Each expense record includes:
-- `id`: auto-incremented unique identifier
-- `date`: ISO 8601 date string (YYYY-MM-DD)
-- `description`: expense description
-- `amount`: numeric cost value
-
-The format is intentionally simple so it can be replaced with a database or other back end later.
-
----
-
-## Contribution & support
-
-- **Repository:** https://github.com/abdelrahman-kamel-elgendy/expense-tracker
-- **Issue tracker:** https://github.com/abdelrahman-kamel-elgendy/expense-tracker/issues
-
-Feel free to open a pull request or issue with ideas, bug reports, or contributions.
-
----
-
-## License
-
-ISC (see `package.json`).
 
 
-## Roadmap & future work
+## 💡 Usage Examples
+### Basic Operations
+```bash
+# Add a new expense
+expense-tracker add --description "Grocery shopping" --amount 75.50 --category food
 
-Check the project URL above for roadmap items and feature ideas. Planned enhancements include:
+# List all expenses
+expense-tracker list
 
-1. Implement command logic (CRUD operations, summaries).
-2. Add tests and CI.
-3. Improve storage layer (switch to SQLite/Cloud).
-4. Add configuration and localization options.
+# Update an expense
+expense-tracker update --id 1 --amount 85.00 --category groceries
 
----
+# Delete an expense
+expense-tracker delete --id 3 --force
+```
 
-Happy tracking! 🎯
+### Advanced Features
+```bash 
+# Filter expenses by category and month
+expense-tracker list --category food --month 3 --sort amount
+
+# Search for expenses
+expense-tracker search --keyword "coffee" --min-amount 5 --max-amount 20
+
+# Set monthly budget
+expense-tracker budget --amount 1000 --month 3
+
+# View detailed statistics
+expense-tracker stats --year 2024
+
+# Export data
+expense-tracker export --format csv --output my-expenses.csv
+```
+
+### Summary & Reporting
+```bash
+# Overall summary
+expense-tracker summary
+
+# Monthly summary with details
+expense-tracker summary --month 3 --detailed
+
+# Category-wise summary
+expense-tracker summary --category food
+```
+
+
+
+## 📊 Data Structure
+```json
+{
+  "id": 1,
+  "date": "2024-03-15",
+  "description": "Grocery shopping",
+  "amount": 75.50,
+  "category": "food",
+  "createdAt": "2024-03-15T10:30:00.000Z"
+}
+```
+
+
+
+## 🛠️ Development
+### Project Structure
+```txt
+expense-tracker/
+├── expense-tracker.js    # Main CLI implementation
+├── expenses.json         # Data storage
+├── package.json          # Project configuration
+├── README.md             # This file
+├── GUIDE.md              # Detailed user guide
+└── .gitignore            # Git ignore rules
+```
+
+### Contributing
+- Fork the repository
+- Create your feature branch (git checkout -b feature/AmazingFeature)
+- Commit your changes (git commit -m 'Add some AmazingFeature')
+- Push to the branch (git push origin feature/AmazingFeature)
+- Open a Pull Request
+
+
+
+## 📈 Roadmap
+### ✅ Completed
+- Basic CRUD operations (add, list, update, delete)
+- Summary command with monthly filtering
+- Export to CSV functionality
+- Data persistence with JSON
+- Input validation and error handling
+
+### 🚧 In Progress
+- Add unit tests
+- Implement data backup/restore
+- Add configuration file support
+
+### 🔮 Planned Features
+- SQLite database integration
+- Recurring expense tracking
+- Budget alerts and notifications
+- Web dashboard integration
+- Multi-currency support
+- Export to PDF
+- Data visualization with charts
+
+
+
+## 🤝 Support
+**Documentation**: See GUIDE.md for detailed usage instructions
+**Issues**: GitHub Issues
+**Discussions**: GitHub Discussions
+
+
+<div align="center"> <sub>Built with ❤️ by Abdelrahman Kamel</sub> <br> <sub>⭐ Star us on GitHub — it motivates us a lot!</sub> </div>
