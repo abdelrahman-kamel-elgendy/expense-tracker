@@ -19,6 +19,7 @@
 npm install -g expense-tracker
 # Now you can use 'expense-tracker' from anywhere
 ```
+
 #### Option 2: Local Development
 ```bash
 git clone https://github.com/abdelrahman-kamel-elgendy/expense-tracker.git
@@ -100,73 +101,71 @@ expense-tracker list --sort amount
 # Combined filters
 expense-tracker list --category entertainment --month 12 --sort date
 ```
-
 Output Example:
-
 All Expenses:
-┌────┬──────────────┬──────────────────────┬──────────┐
-│ ID │ Date         │ Description          │ Amount   │
-├────┼──────────────┼──────────────────────┼──────────┤
-│ 1  │ 2024-03-01   │ Monthly rent         │ $1200.00 │
-│ 2  │ 2024-03-05   │ Grocery shopping     │ $75.30   │
-│ 3  │ 2024-03-10   │ Coffee with friends  │ $18.50   │
-└────┴──────────────┴──────────────────────┴──────────┘
-Total: $1293.80 | Average: $431.27
+| ID | Date         | Description          | Amount   |
+|----|--------------|----------------------|----------|
+| 1  | 2024-03-01   | Monthly rent         | $1200.00 |
+| 2  | 2024-03-05   | Grocery shopping     | $75.30   |
+| 3  | 2024-03-10   | Coffee with friends  | $18.50   |
+|Total: $1293.80    | Average: $431.27                |
 
-update - Modify Expenses
+### update - Modify Expenses
 Syntax:
-
-bash
+```bash
 expense-tracker update --id <number> [options]
+```
 Options:
+|Option	            |Description	                 |Example                             |
+|------------------ |--------------------------------|------------------------------------|
+|--id, -i	        |Expense ID to update (required) |--id 3                              |
+|--description, -d  |New description	             |--description "Updated description" |
+|--amount, -a	    |New amount	                     |--amount 45.00                      |
+|--category, -c	    |New category	                 |--category groceries                |
+|--date	            |New date	                     |--date 2024-03-12                   |
 
-Option	Description	Example
---id, -i	Expense ID to update (required)	--id 3
---description, -d	New description	--description "Updated description"
---amount, -a	New amount	--amount 45.00
---category, -c	New category	--category groceries
---date	New date	--date 2024-03-12
 Examples:
-
-bash
+```bash
 # Update multiple fields
 expense-tracker update --id 2 --amount 85.00 --category groceries --description "Weekly groceries"
 
 # Update single field
 expense-tracker update --id 5 --category utilities
-delete - Remove Expenses
+```
+### delete - Remove Expenses
 Syntax:
-
-bash
+```bash
 expense-tracker delete --id <number> [--force]
+```
 Options:
+|Option	     |Description                     |
+|------------|--------------------------------|
+|--id, -i	 |Expense ID to delete (required) |
+|--force, -f |Skip confirmation prompt
 
-Option	Description
---id, -i	Expense ID to delete (required)
---force, -f	Skip confirmation prompt
 Examples:
-
-bash
+```bash
 # With confirmation (recommended)
 expense-tracker delete --id 3
 
 # Force delete without confirmation
 expense-tracker delete --id 7 --force
-summary - View Spending Summary
+```
+### summary - View Spending Summary
 Syntax:
-
-bash
+```bash
 expense-tracker summary [options]
+```
 Options:
+|Option	        |Description	|Example|
+|---------------|---------------|-----------------------|
+|--month, -m	|Filter by month	|--month 6|
+|--category, -c	|Filter by category	|--category food|
+|--year, -y	    |Filter by year	|--year 2024|
+|--detailed	    |Show detailed breakdown	|--detailed|
 
-Option	Description	Example
---month, -m	Filter by month	--month 6
---category, -c	Filter by category	--category food
---year, -y	Filter by year	--year 2024
---detailed	Show detailed breakdown	--detailed
 Examples:
-
-bash
+```bash
 # Overall summary
 expense-tracker summary
 
@@ -181,23 +180,25 @@ expense-tracker summary --category food
 
 # Yearly summary with details
 expense-tracker summary --year 2024 --detailed
-search - Advanced Search
+```
+
+### search - Advanced Search
 Syntax:
-
-bash
+```bash
 expense-tracker search [options]
+```
 Options:
+|Option	        |Description	|Example|
+|---------------|----------------------|------------------------------|
+|--keyword, -k	|Search in descriptions	-|-keyword "coffee"|
+|--category, -c	|Filter by category	|--category food|
+|--min-amount	|Minimum amount	|--min-amount 10|
+|--max-amount	|Maximum amount	-|-max-amount 100|
+|--start-date	|Start date (YYYY-MM-DD)	|--start-date 2024-03-01|
+|--end-date	End date (YYYY-MM-DD)	|--end-date 2024-03-31|
 
-Option	Description	Example
---keyword, -k	Search in descriptions	--keyword "coffee"
---category, -c	Filter by category	--category food
---min-amount	Minimum amount	--min-amount 10
---max-amount	Maximum amount	--max-amount 100
---start-date	Start date (YYYY-MM-DD)	--start-date 2024-03-01
---end-date	End date (YYYY-MM-DD)	--end-date 2024-03-31
 Examples:
-
-bash
+```bash
 # Search by keyword
 expense-tracker search --keyword "coffee"
 
@@ -209,48 +210,51 @@ expense-tracker search --category food --start-date 2024-03-01 --end-date 2024-0
 
 # Complex search
 expense-tracker search --keyword "lunch" --min-amount 15 --max-amount 30 --category food
-budget - Monthly Budget Tracking
+```
+
+### budget - Monthly Budget Tracking
 Syntax:
-
-bash
+```bash
 expense-tracker budget --amount <number> [--month <number>]
+```
 Options:
+|Option	        |Required	|Description	|Example|
+|---------------|-----------|--------------------------------|
+|--amount, -a	|✅         |budget amount	|--amount 1000|
+|--month, -m	|❌         |(1-12, default: current)	|--month 3|
 
-Option	Required	Description	Example
---amount, -a	✅	Monthly budget amount	--amount 1000
---month, -m	❌	Month (1-12, default: current)	--month 3
 Examples:
-
-bash
+```bash
 # Set budget for current month
 expense-tracker budget --amount 2000
 
 # Check budget for specific month
 expense-tracker budget --amount 1500 --month 6
+```
 Output Example:
-
-text
+```text
 💰 Budget Analysis for Month 3:
 Budget: $1500.00
 Spent: $1293.80
 Remaining: $206.20
 ✅ Within budget
-stats - Detailed Statistics
+```
+### stats - Detailed Statistics
 Syntax:
-
-bash
+```bash
 expense-tracker stats [--year <year>]
+```
 Options:
+|Option	    |Description	                    |Example|
+|-----------|-----------------------------------|--------|
+|--year, -y	|Year to analyze (default: current)	|--year 2024|
 
-Option	Description	Example
---year, -y	Year to analyze (default: current)	--year 2024
 Example:
-
-bash
+```bash
 expense-tracker stats --year 2024
+```
 Output Example:
-
-text
+```text
 📈 Statistics for 2024:
 
 Overall:
@@ -271,31 +275,34 @@ Category Breakdown:
   food: $4320.50 (28.3%, 156 expenses)
   entertainment: $1850.75 (12.1%, 89 expenses)
   ...
-export - Export Data
+```
+
+### export - Export Data
 Syntax:
-
-bash
+```bash
 expense-tracker export [--format <format>] [--output <file>]
+```
 Options:
+|Option	        |Description	|Default	            |Example|
+|---------------|--------------------------|-------|-------------------|
+|--format, -f	|Export format (csv, json)	|csv	|--format json|
+|--output, -o	|Output filename	|expenses_YYYY-MM-DD.format	|--output my-data.csv|
 
-Option	Description	Default	Example
---format, -f	Export format (csv, json)	csv	--format json
---output, -o	Output filename	expenses_YYYY-MM-DD.format	--output my-data.csv
 Examples:
-
-bash
+```bash
 # Export to CSV with default name
 expense-tracker export
 
 # Export to JSON with custom name
 expense-tracker export --format json --output my-expenses.json
-🎯 Advanced Usage
-Batch Operations with Shell Scripts
+```
+
+## 🎯 Advanced Usage
+### Batch Operations with Shell Scripts
 Create a shell script to add multiple expenses:
 
 add-weekly-expenses.sh:
-
-bash
+```bash
 #!/bin/bash
 
 # Add weekly expenses
@@ -304,20 +311,22 @@ expense-tracker add -d "Tuesday coffee" -a 4.50 -c drinks
 expense-tracker add -d "Wednesday dinner" -a 32.00 -c food
 expense-tracker add -d "Thursday transport" -a 25.00 -c transport
 expense-tracker add -d "Friday movie" -a 30.00 -c entertainment
-Data Backup
-Create automatic backups:
+```
 
-bash
+### Data Backup
+Create automatic backups:
+```bash
 #!/bin/bash
 # backup-expenses.sh
 
 DATE=$(date +%Y%m%d_%H%M%S)
 cp expenses.json "backups/expenses_$DATE.json"
 echo "✅ Backup created: backups/expenses_$DATE.json"
-Monthly Reports
-Generate monthly reports automatically:
+```
 
-bash
+### Monthly Reports
+Generate monthly reports automatically:
+```bash
 #!/bin/bash
 # monthly-report.sh
 
@@ -329,35 +338,27 @@ echo "=================================="
 
 expense-tracker summary --month $MONTH --detailed
 expense-tracker export --format csv --output "reports/${YEAR}_${MONTH}_expenses.csv"
-💡 Tips and Tricks
+```
+
+## 💡 Tips and Tricks
 1. Use Categories Wisely
 Create a consistent category system:
-
-housing: Rent, utilities, maintenance
-
-food: Groceries, restaurants, coffee
-
-transport: Gas, public transit, parking
-
-entertainment: Movies, games, subscriptions
-
-health: Medical, pharmacy, fitness
-
-education: Books, courses, supplies
-
-shopping: Clothes, electronics, gifts
-
-other: Miscellaneous expenses
+- **housing**: Rent, utilities, maintenance
+- **food**: Groceries, restaurants, coffee
+- **transport**: Gas, public transit, parking
+- **entertainment**: Movies, games, subscriptions
+- **health**: Medical, pharmacy, fitness
+- **education**: Books, courses, supplies
+- **shopping**: Clothes, electronics, gifts
+- **other**: Miscellaneous expenses
 
 2. Regular Updates
-Add expenses immediately after purchase
-
-Do a weekly review to catch missed entries
-
-Set a monthly reminder to check your budget
+- Add expenses immediately after purchase
+- Do a weekly review to catch missed entries
+- Set a monthly reminder to check your budget
 
 3. Smart Searching
-bash
+```bash
 # Find all expensive transactions
 expense-tracker search --min-amount 100
 
@@ -366,52 +367,65 @@ expense-tracker search --start-date 2024-01-01 --end-date 2024-03-31
 
 # Find specific patterns
 expense-tracker search --keyword "amazon" --category shopping
+```
+
 4. Budget Planning
-bash
+```bash
 # Check if you're on track mid-month
 expense-tracker budget --amount 2000
 
 # Compare month-over-month
 expense-tracker stats --year 2024
+```
+
 5. Quick Aliases
 Add to your ~/.bashrc or ~/.zshrc:
 
-bash
+```bash
 alias ex='expense-tracker'
 alias ex-add='expense-tracker add'
 alias ex-list='expense-tracker list'
 alias ex-sum='expense-tracker summary'
 alias ex-budget='expense-tracker budget'
 alias ex-stats='expense-tracker stats --year $(date +%Y)'
-🔧 Troubleshooting
+```
+
+## 🔧 Troubleshooting
 Common Issues and Solutions
 1. Command not found
-bash
+```bash
 # Solution: Install globally or use npm link
 npm install -g .
 # or
 npm link
+```
+
 2. Invalid amount error
-bash
+```bash
 # Make sure amount is a positive number
 expense-tracker add -d "Test" -a 10.50  # ✅ Correct
 expense-tracker add -d "Test" -a -5     # ❌ Error
 expense-tracker add -d "Test" -a "ten"  # ❌ Error
+```
+
 3. JSON file corrupted
 If expenses.json gets corrupted:
-
-bash
+```bash
 # Backup current file
 cp expenses.json expenses.json.bak
 
 # The app will create a new file on next use
 rm expenses.json
+```
+
 4. Permission issues
-bash
+```bash
 # Fix permissions
 chmod 644 expenses.json
 chmod 755 expense-tracker.js
-❓ FAQ
+```
+
+## ❓ FAQ
 Q: Where is my data stored?
 A: All data is stored in expenses.json in the same directory as the application.
 
@@ -432,56 +446,23 @@ A: Yes, it works on Windows, macOS, and Linux.
 
 Q: How do I update to the latest version?
 A: Pull the latest changes and reinstall:
-
-bash
+```bash
 git pull
 npm install
 npm link
+```
+
 Q: What happens if I delete expenses.json?
 A: The application will create a new empty file automatically.
 
-📞 Getting Help
+## 📞 Getting Help
 If you encounter any issues:
+1. Check this guide for solutions
+2. Search existing issues
+3. Create a new issue with:
+    - Command you ran
+    - Error message
+    - Your operating system
+    - Node.js version
 
-Check this guide for solutions
-
-Search existing issues
-
-Create a new issue with:
-
-Command you ran
-
-Error message
-
-Your operating system
-
-Node.js version
-
-<div align="center"> <h3>🎉 Happy Expense Tracking!</h3> <p>Remember: What gets measured, gets managed.</p> </div> ```
-These files provide:
-
-README.md: An attractive, comprehensive overview with badges, quick start guide, feature list, command reference, usage examples, roadmap, and project status.
-
-GUIDE.md: A detailed user manual with:
-
-Complete command reference for all 9 commands
-
-Advanced usage examples and scripts
-
-Tips and tricks for effective expense tracking
-
-Troubleshooting guide
-
-FAQ section
-
-Shell aliases and automation scripts
-
-The documentation is designed to be:
-
-User-friendly with clear formatting and examples
-
-Comprehensive covering all features and edge cases
-
-Practical with real-world usage scenarios
-
-Maintainable with clear structure for future updates
+<div align="center"> <h3>🎉 Happy Expense Tracking!</h3> <p>Remember: What gets measured, gets managed.</p> </div>
