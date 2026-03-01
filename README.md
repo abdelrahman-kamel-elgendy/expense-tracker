@@ -55,12 +55,6 @@ Run `expense-tracker <command> --help` for command‑specific options.
 
 ---
 
-## Scripts
-
-- `npm test` — placeholder; currently prints an error and exits with code 1.
-
----
-
 ## Data storage
 
 Expenses are kept in a JSON file (`expenses.json`) at the project root. The format is intentionally simple so it can be replaced with a database or other back end later.
