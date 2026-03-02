@@ -523,8 +523,6 @@ program
     .description("Search expenses")
     .option("-k, --keyword <keyword>", "Search by keyword in description")
     .option("-c, --category <category>", "Filter by category")
-    .option("-min, --min-amount <amount>", "Minimum amount")
-    .option("-max, --max-amount <amount>", "Maximum amount")
     .option("--start-date <date>", "Start date (YYYY-MM-DD)")
     .option("--end-date <date>", "End date (YYYY-MM-DD)")
     .action((options) => {

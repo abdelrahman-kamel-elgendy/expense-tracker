@@ -98,7 +98,7 @@ All Expenses:
 | 1  | 2024-03-01   | Monthly rent         | $1200.00 |
 | 2  | 2024-03-05   | Grocery shopping     | $75.30   |
 | 3  | 2024-03-10   | Coffee with friends  | $18.50   |
-|Total: $1293.80    | Average: $431.27                |
+Total: $1293.80 | Average: $431.27
 
 ### update - Modify Expenses
 Syntax:
