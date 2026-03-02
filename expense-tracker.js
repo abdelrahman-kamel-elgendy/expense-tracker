@@ -674,7 +674,7 @@ Examples:
   $ expense-tracker search --keyword "coffee" --min-amount 5
   $ expense-tracker stats --year 2024
 
-For more information, visit: https://github.com/yourusername/expense-tracker
+For more information, visit: https://github.com/abdelrahman-kamel/expense-tracker
 `);
 
 program.parse(process.argv);
