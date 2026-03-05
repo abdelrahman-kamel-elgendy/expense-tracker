@@ -5,9 +5,9 @@ const { readExpenses, saveExpenses, generateId } = require("../utils/storage");
 const { validateAmount, validateDate } = require("../utils/validation");
 const { displayExpenseTable } = require("../utils/display");
 
-// -- Smart category detection from description ---------------------------------
+// == Smart category detection from description =================================
 const CATEGORY_KEYWORDS = {
-    food: ["restaurant", "cafe", "coffee", "lunch", "dinner", "breakfast", "pizza", "burger", "grocery", "supermarket", "food", "eat", "meal", "snack", "starbucks", "mcdonalds", "kfc", "delivery"],
+    food: ["restaurant", "cafe", "coffee", "lunch", "dinner", "breakfast", "pizza", "burger", "grocery", "supermarket", "food", "eat", "meal", "snack", "starbucks", "mcdonalds", "kfc", "uber eats", "delivery"],
     transport: ["uber", "lyft", "taxi", "bus", "metro", "subway", "train", "gas", "fuel", "parking", "toll", "flight", "airline", "ticket", "transit", "car"],
     housing: ["rent", "mortgage", "utility", "electric", "water", "internet", "wifi", "maintenance", "repair", "insurance", "lease"],
     health: ["pharmacy", "hospital", "doctor", "clinic", "medicine", "drug", "gym", "fitness", "dental", "vision", "health"],
@@ -24,7 +24,7 @@ const detectCategory = (description) => {
     return "other";
 };
 
-// -- CSV parser (no external dependency) ---------------------------------------
+// == CSV parser (no external dependency) =======================================
 const parseCSV = (content) => {
     const lines = content.trim().split(/\r?\n/);
     const headers = lines[0].split(",").map((h) => h.replace(/"/g, "").trim().toLowerCase());
@@ -59,7 +59,7 @@ const parseCSV = (content) => {
     return { headers, rows };
 };
 
-// -- Column auto-mapping -------------------------------------------------------
+// == Column auto-mapping =======================================================
 const findColumn = (headers, aliases) =>
     headers.find((h) => aliases.some((a) => h.includes(a)));
 
@@ -70,7 +70,7 @@ const COLUMN_ALIASES = {
     category: ["category", "type", "tag", "label", "group"],
 };
 
-module.exports = (program) => {
+module.exports = program => {
     program
         .command("import")
         .description("Import expenses from a CSV or JSON file")
@@ -84,8 +84,8 @@ module.exports = (program) => {
         .option("--auto-category", "Auto-detect category from description")
         .option("--dry-run", "Preview import without saving")
         .option("--skip-errors", "Skip invalid rows instead of aborting")
-        .action((opts) => {
-            // -- Resolve file -----------------------------------------------------
+        .action(opts => {
+            // == Resolve file =====================================================
             const filePath = path.resolve(opts.file);
             if (!fs.existsSync(filePath)) {
                 console.error(chalk.red(`  ✖  File not found: ${filePath}`));
@@ -102,7 +102,7 @@ module.exports = (program) => {
 
             const content = fs.readFileSync(filePath, "utf8");
 
-            // -- Parse ------------------------------------------------------------
+            // == Parse ============================================================
             let rawRows = [];
             let headers = [];
 
@@ -126,7 +126,7 @@ module.exports = (program) => {
                 return;
             }
 
-            // -- Column mapping ---------------------------------------------------
+            // == Column mapping ===================================================
             const colMap = {
                 description: opts.descCol || findColumn(headers, COLUMN_ALIASES.description) || "description",
                 amount: opts.amountCol || findColumn(headers, COLUMN_ALIASES.amount) || "amount",
@@ -135,15 +135,15 @@ module.exports = (program) => {
             };
 
             console.log(chalk.bold(`\n  📂 Importing from ${chalk.white(path.basename(filePath))}`));
-            console.log(chalk.gray(`  ${"-".repeat(44)}`));
+            console.log(chalk.gray(`  ${"=".repeat(44)}`));
             console.log(chalk.gray(`  Format:   ${format.toUpperCase()}`));
             console.log(chalk.gray(`  Rows:     ${rawRows.length}`));
             console.log(chalk.gray(`  Columns → desc: "${colMap.description}", amount: "${colMap.amount}", date: "${colMap.date}"`));
 
-            // -- Process rows -----------------------------------------------------
+            // == Process rows =====================================================
             const today = new Date().toISOString().split("T")[0];
             const existing = readExpenses();
-            let nextId = existing.length > 0 ? Math.max(...existing.map((e) => e.id)) + 1 : 1;
+            let nextId = existing.length > 0 ? Math.max(...existing.map(e => e.id)) + 1 : 1;
 
             const imported = [];
             const errors = [];
@@ -206,7 +206,7 @@ module.exports = (program) => {
                 });
             });
 
-            // -- Report errors ----------------------------------------------------
+            // == Report errors ====================================================
             if (errors.length) {
                 console.log(chalk.yellow(`\n  ⚠️  ${errors.length} row(s) had issues:`));
                 errors.slice(0, 10).forEach(({ line, reason }) =>
@@ -220,7 +220,7 @@ module.exports = (program) => {
                 return;
             }
 
-            // -- Preview / Save ---------------------------------------------------
+            // == Preview / Save ===================================================
             displayExpenseTable(imported.slice(0, 10), `Preview (first ${Math.min(imported.length, 10)} of ${imported.length})`);
 
             if (imported.length > 10) {
