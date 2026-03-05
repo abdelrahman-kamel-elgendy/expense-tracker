@@ -4,7 +4,7 @@
 
 const { program } = require("commander");
 
-// ── Register all commands ──────────────────────────────────────────────────────
+// == Register all commands ======================================================
 require("./src/commands/add")(program);
 require("./src/commands/list")(program);
 require("./src/commands/delete")(program);
@@ -16,7 +16,7 @@ require("./src/commands/search")(program);
 require("./src/commands/export")(program);
 require("./src/commands/import")(program);
 
-// ── CLI metadata ───────────────────────────────────────────────────────────────
+// == CLI metadata ===============================================================
 program
     .name("expense-tracker")
     .description("💰 Personal Expense Tracker CLI")

@@ -1,3 +1,56 @@
-/node_modules
+# === Data files (user-specific, should never be committed) ===================
+expenses.json
+budgets.json
+
+# === Test artifacts ===========================================================
+tests/_test_data/
+tests/_test_expenses_temp.json
+tests/_cmd_expenses.json
+tests/_cmd_budgets.json
+tests/node_modules/
+
+# === Node.js ==================================================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 package-lock.json
-expenses.csv
+yarn.lock
+pnpm-lock.yaml
+.pnp
+.pnp.js
+
+# === Export output files ======================================================
+expenses_*.csv
+expenses_*.json
+*.export.csv
+*.export.json
+
+# === Environment & secrets ====================================================
+.env
+.env.local
+.env.*.local
+
+# === Editors & IDEs ===========================================================
+# VS Code
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# === Logs & diagnostics =======================================================
+logs/
+*.log
+*.log.*
+.npm/
+
+# === Coverage & test output ===================================================
+coverage/
+.nyc_output/
+test-results/
+junit.xml
+
+# === Build output (if you ever compile/bundle this) ==========================
+dist/
+build/
+out/

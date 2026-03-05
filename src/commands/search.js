@@ -22,7 +22,7 @@ module.exports = program => {
                 return;
             }
 
-            // ── Filters ──────────────────────────────────────────────────────────
+            // == Filters ==========================================================
             if (opts.keyword) {
                 const kw = opts.keyword.toLowerCase();
                 expenses = expenses.filter(e =>
