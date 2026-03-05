@@ -561,6 +561,6 @@ No external chart library is used. All terminal charts are rendered with plain U
 
 ---
 
-## License
+## Author
 
-MIT
+**Abdelrahman Kamel** — [abdelrahman.kamel.elgendy@gmail.com](mailto:abdelrahman.kamel.elgendy@gmail.com)
