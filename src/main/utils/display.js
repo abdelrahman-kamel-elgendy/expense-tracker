@@ -1,6 +1,6 @@
 const chalk = require("chalk");
 const Table = require("cli-table3");
-const storage = require("storage.js");
+const storage = require("./storage.js");
 const { currencySymbol, MONTH_NAMES_FULL } = require("../config");
 
 const formatCurrency = (amount) => `${currencySymbol}${amount.toFixed(2)}`;

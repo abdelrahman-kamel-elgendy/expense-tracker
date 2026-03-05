@@ -3,11 +3,11 @@ expenses.json
 budgets.json
 
 # === Test artifacts ===========================================================
-tests/_test_data/
-tests/_test_expenses_temp.json
-tests/_cmd_expenses.json
-tests/_cmd_budgets.json
-tests/node_modules/
+test/_test_data/
+test/_test_expenses_temp.json
+test/_cmd_expenses.json
+test/_cmd_budgets.json
+test/node_modules/
 
 # === Node.js ==================================================================
 node_modules/

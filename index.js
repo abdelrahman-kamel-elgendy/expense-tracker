@@ -5,22 +5,22 @@
 const { program } = require("commander");
 
 // == Register all commands ======================================================
-require("./src/commands/add")(program);
-require("./src/commands/list")(program);
-require("./src/commands/delete")(program);
-require("./src/commands/update")(program);
-require("./src/commands/summary")(program);
-require("./src/commands/stats")(program);
-require("./src/commands/budget")(program);
-require("./src/commands/search")(program);
-require("./src/commands/export")(program);
-require("./src/commands/import")(program);
+require("./src/main/commands/add")(program);
+require("./src/main/commands/list")(program);
+require("./src/main/commands/delete")(program);
+require("./src/main/commands/update")(program);
+require("./src/main/commands/summary")(program);
+require("./src/main/commands/stats")(program);
+require("./src/main/commands/budget")(program);
+require("./src/main/commands/search")(program);
+require("./src/main/commands/export")(program);
+require("./src/main/commands/import")(program);
 
 // == CLI metadata ===============================================================
 program
     .name("expense-tracker")
     .description("💰 Personal Expense Tracker CLI")
-    .version("3.0.0")   
+    .version("3.0.0")
     .addHelpText(
         "after",
         `
