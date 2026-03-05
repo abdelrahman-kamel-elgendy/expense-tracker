@@ -20,7 +20,7 @@ require("./src/commands/import")(program);
 program
     .name("expense-tracker")
     .description("💰 Personal Expense Tracker CLI")
-    .version("3.0.0")
+    .version("3.0.0")   
     .addHelpText(
         "after",
         `
