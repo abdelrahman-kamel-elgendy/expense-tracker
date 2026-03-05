@@ -1,26 +1,37 @@
 {
   "name": "expense-tracker",
-  "version": "1.0.0",
-  "description": "This project tracks personal expenses.",
-  "main": "expense-tracker.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/abdelrahman-kamel-elgendy/expense-tracker.git"
+  "version": "3.0.0",
+  "description": "💰 Personal Expense Tracker CLI",
+  "main": "index.js",
+  "bin": {
+    "expense-tracker": "./index.js"
   },
-  "keywords": [],
-  "author": "Abdelrahman Kamel",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/abdelrahman-kamel-elgendy/expense-tracker/issues"
+  "scripts": {
+    "start": "node index.js",
+    "add": "node index.js add",
+    "list": "node index.js list",
+    "delete": "node index.js delete",
+    "update": "node index.js update",
+    "summary": "node index.js summary",
+    "stats": "node index.js stats",
+    "budget": "node index.js budget",
+    "search": "node index.js search",
+    "export": "node index.js export",
+    "import": "node index.js import",
+    "help": "node index.js --help"
   },
-  "homepage": "https://github.com/abdelrahman-kamel-elgendy/expense-tracker#readme",
+  "keywords": [
+    "expense",
+    "tracker",
+    "cli",
+    "budget",
+    "finance"
+  ],
+  "author": "",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.2",
     "cli-table3": "^0.6.5",
-    "commander": "^14.0.3"
-  },
-  "bin": {
-    "expense-tracker": "./expense-tracker.js"
+    "commander": "^11.0.0"
   }
 }
